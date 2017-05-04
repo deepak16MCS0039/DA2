@@ -1,0 +1,63 @@
+
+
+------------------------------------------------CSE 6003 Web Services Lab-----------------------------------------------------------------------
+-------------------------------------------------Winter Semester 2016~17------------------------------------------------------------------------
+
+SUBMITTED BY: DEEPAK LAXKAR – 16MCS0039
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+DBpedia is essentially a huge RDF dataset. And there are two ways to access it:
+
+1. Use a Web browser to view different RDF graphs contained in DBpedia dataset or,
+
+2. Use a SPARQL endpoint to query against DBpedia dataset with the goal of discovering information with much greater ease.
+
+
+
+
+
+STEP 1:  Access the endpoint via a SPARQL viewer	
+		
+		http://dbpedia.org/snorql/
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+STEP 2: Know the subject’s corresponding resource name
+
+		https://en.wikipedia.org/wiki/Stephen_Hendry
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+STEP 3: Access Resource URL
+
+		http://dbpedia.org/resource/Stephen_Hendry
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+STEP 4: SPARQL query to understand the class type of the resource identifying Stephen Hendry
+
+	SELECT * WHERE 
+	{
+	:Stephen_Hendry a ?class_type.
+	}
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+STEP 5: SPARQL query to find out all the properties used to describe Stephen Hendry.
+
+	SELECT * WHERE 
+	{
+	:Stephen_Hendry ?propertyName ?propertyValue.
+	}
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+STEP 6: Find all the Snooker players who are from the same country as Stephen Hendry.
+	
+	PREFIX dbpedia: <http://dbpedia.org/ontology/>
+	SELECT ?someone ?birthPlace
+	WHERE 
+	{
+	:Stephen_Hendry dbpedia:birthPlace ?birthPlace.
+	?someone a dbpedia:SnookerPlayer.
+	?someone dbpedia:birthPlace ?birthPlace.
+	}
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
